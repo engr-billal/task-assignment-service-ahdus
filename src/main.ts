@@ -48,10 +48,10 @@ async function bootstrap() {
   // Enable CORS
   app.enableCors();
 
-  await app.listen(process.env.PORT ?? 3000);
-  console.log(`Application is running on: ${await app.getUrl()}`);
-  console.log(
-    `Swagger documentation available at: ${await app.getUrl()}/api/docs`,
-  );
+  // Get port from environment variable (Heroku sets this automatically)
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  console.log(`Application is running on port ${port}`);
+  console.log(`Swagger documentation available at: /api/docs`);
 }
 bootstrap();
