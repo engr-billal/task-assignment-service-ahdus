@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-// import * as schema from './schema';
+import * as schema from './schema';
 
 // Create a new pool for PostgreSQL
 export const pool = new Pool({
@@ -12,4 +12,4 @@ export const pool = new Pool({
 });
 
 // Create the Drizzle instance using the PostgreSQL connection pool
-export const db = drizzle(pool);
+export const db = drizzle(pool, { schema });

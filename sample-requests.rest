@@ -1,0 +1,47 @@
+### Get all users
+GET http://localhost:3000/api/users
+X-User-ID: any-user-id
+X-User-Role: user
+
+### Create a new task
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+X-User-ID: any-user-id
+X-User-Role: user
+
+{
+  "title": "Sample Task",
+  "description": "This is a sample task created for testing",
+  "assignedUserId": "" // Optional: Add a user ID here
+}
+
+### Get all tasks
+GET http://localhost:3000/api/tasks
+X-User-ID: any-user-id
+X-User-Role: user
+
+### Get tasks for a specific user
+GET http://localhost:3000/api/tasks?assignedUserId=user-id-here
+X-User-ID: any-user-id
+X-User-Role: user
+
+### Get a task by ID
+GET http://localhost:3000/api/tasks/task-id-here
+X-User-ID: any-user-id
+X-User-Role: user
+
+### Update a task
+PATCH http://localhost:3000/api/tasks/task-id-here
+Content-Type: application/json
+X-User-ID: any-user-id
+X-User-Role: user
+
+{
+  "title": "Updated Task Title",
+  "status": "completed"
+}
+
+### Delete a task (admin only)
+DELETE http://localhost:3000/api/tasks/task-id-here
+X-User-ID: any-user-id
+X-User-Role: admin 

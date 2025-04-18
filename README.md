@@ -22,40 +22,111 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# Task Assignment Microservice
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a NestJS-based microservice for task assignment and management, built as part of a microservices-based project management system.
 
-## Project setup
+## Features
+
+- Task management (CRUD operations)
+- User authentication simulation
+- Role-based access control
+- PostgreSQL database integration with Drizzle ORM
+- API response transformation
+- Request logging
+
+## Requirements
+
+- Node.js (v16 or higher)
+- PostgreSQL (v12 or higher)
+- npm or yarn
+
+## Installation
+
+1. Clone the repository:
 
 ```bash
-$ npm install
+git clone https://github.com/yourusername/task-assignment-service.git
+cd task-assignment-service
 ```
 
-## Compile and run the project
+2. Install dependencies:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+3. Configure the database:
+
+Create a `.env` file in the root directory with the following content:
+
+```
+DATABASE_URL=postgresql://username:password@localhost:5432/database_name
+```
+
+Replace `username`, `password`, and `database_name` with your PostgreSQL credentials.
+
+4. Set up the database:
 
 ```bash
-# unit tests
-$ npm run test
+npm run db:setup
+```
 
-# e2e tests
-$ npm run test:e2e
+This will run migrations and seed the database with initial data.
 
-# test coverage
-$ npm run test:cov
+## Running the Application
+
+Start the development server:
+
+```bash
+npm run start:dev
+```
+
+The API will be available at `http://localhost:3000/api`.
+
+## API Endpoints
+
+### Tasks
+
+- `POST /api/tasks` - Create a new task
+- `GET /api/tasks` - Get all tasks
+- `GET /api/tasks?assignedUserId={userId}` - Get tasks for a specific user
+- `GET /api/tasks/{id}` - Get a task by ID
+- `PATCH /api/tasks/{id}` - Update a task
+- `DELETE /api/tasks/{id}` - Delete a task (admin only)
+
+### Users (Simulation)
+
+- `GET /api/users` - Get all users
+- `GET /api/users/{id}` - Get a user by ID
+
+## Authentication
+
+This service simulates authentication via HTTP headers. For API calls, include the following headers:
+
+- `x-user-id`: The ID of the authenticated user
+- `x-user-role`: The role of the user (`admin` or `user`)
+
+Example:
+
+```bash
+curl -X GET http://localhost:3000/api/tasks \
+  -H "x-user-id: 123e4567-e89b-12d3-a456-426614174000" \
+  -H "x-user-role: admin"
+```
+
+## Testing
+
+Run the tests:
+
+```bash
+npm test
+```
+
+Run e2e tests:
+
+```bash
+npm run test:e2e
 ```
 
 ## Deployment
@@ -96,4 +167,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License.
