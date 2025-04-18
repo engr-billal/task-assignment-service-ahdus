@@ -4,19 +4,21 @@ import * as schema from './schema';
 
 // Parse DATABASE_URL for Heroku compatibility
 export const getDbConfig = () => {
+  console.log('Environment:', process.env.NODE_ENV);
+
   if (process.env.DATABASE_URL) {
+    console.log('Using DATABASE_URL from environment');
     // When running on Heroku, use the DATABASE_URL
-    const connectionString = process.env.DATABASE_URL;
     return {
-      connectionString,
-      ssl:
-        process.env.NODE_ENV === 'production'
-          ? { rejectUnauthorized: false }
-          : false,
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
     };
   }
 
   // Local development configuration
+  console.log('Using local database configuration');
   return {
     user: 'postgres',
     host: 'localhost',
