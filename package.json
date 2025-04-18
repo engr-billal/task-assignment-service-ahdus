@@ -26,7 +26,7 @@
     "db:migrate:prod": "node dist/migrate.js",
     "db:setup": "npm run db:migrate && npm run db:seed",
     "db:generate": "drizzle-kit generate:pg",
-    "check:heroku": "node dist/check-heroku.js",
+    "check:heroku": "node dist/src/check-heroku.js",
     "postinstall": "bash build-heroku.sh",
     "heroku-postbuild": "chmod +x build-heroku.sh && ./build-heroku.sh"
   },
