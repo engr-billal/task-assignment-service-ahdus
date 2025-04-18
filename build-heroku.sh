@@ -2,9 +2,6 @@
 set -e
 
 echo "Building NestJS app for Heroku..."
-# First run npm ci to ensure dependencies match package-lock.json
-echo "Installing dependencies with npm ci..."
-npm ci --production=false
 
 # Build the app
 echo "Building the application..."
