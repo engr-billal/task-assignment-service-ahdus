@@ -1,0 +1,26 @@
+{
+  "name": "task-assignment-service",
+  "description": "Task Assignment Microservice built with NestJS",
+  "repository": "https://github.com/yourusername/task-assignment-service",
+  "logo": "https://nestjs.com/img/logo_text.svg",
+  "keywords": ["node", "nestjs", "postgresql", "drizzle", "microservice"],
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Environment for the application",
+      "value": "production"
+    }
+  },
+  "scripts": {
+    "postdeploy": "npm run db:setup"
+  }
+}
