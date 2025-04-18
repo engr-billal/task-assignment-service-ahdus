@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
+
 echo "Building NestJS app for Heroku..."
 npm run build
-echo "Running migrations..."
-npm run db:migrate
-echo "Seeding database..."
-npm run db:seed
-echo "Build completed!" 
+
+# Don't run migrations during build phase
+# They will be run by the Procfile before starting the app
+echo "Build completed successfully!" 

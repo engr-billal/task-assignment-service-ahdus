@@ -3,7 +3,7 @@ import { Pool } from 'pg';
 import * as schema from './schema';
 
 // Parse DATABASE_URL for Heroku compatibility
-const getDbConfig = () => {
+export const getDbConfig = () => {
   if (process.env.DATABASE_URL) {
     // When running on Heroku, use the DATABASE_URL
     const connectionString = process.env.DATABASE_URL;
