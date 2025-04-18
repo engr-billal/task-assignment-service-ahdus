@@ -20,17 +20,20 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:seed": "ts-node -r tsconfig-paths/register src/seed.ts",
     "db:migrate": "ts-node -r dotenv/config -r tsconfig-paths/register src/migrate.ts",
+    "db:migrate:prod": "node dist/migrate.js",
     "db:setup": "npm run db:migrate && npm run db:seed",
     "db:generate": "drizzle-kit generate:pg",
-    "check:heroku": "ts-node src/check-heroku.ts",
+    "check:heroku": "node dist/check-heroku.js",
     "postinstall": "bash build-heroku.sh",
     "heroku-postbuild": "chmod +x build-heroku.sh && ./build-heroku.sh"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.20",
     "@nestjs/core": "^11.0.20",
+    "@nestjs/jwt": "^11.0.0",
     "@nestjs/platform-express": "^11.0.20",
     "@nestjs/swagger": "^11.1.4",
+    "@types/node": "^20.3.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^16.5.0",
@@ -42,6 +45,7 @@
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.1",
+    "typescript": "^5.1.3",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
@@ -50,7 +54,6 @@
     "@nestjs/testing": "^11.0.20",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.2",
-    "@types/node": "^20.3.1",
     "@types/supertest": "^6.0.0",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
@@ -65,8 +68,7 @@
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.3"
+    "tsconfig-paths": "^4.2.0"
   },
   "jest": {
     "moduleFileExtensions": [

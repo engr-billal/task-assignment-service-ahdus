@@ -4,6 +4,10 @@ set -e
 echo "Building NestJS app for Heroku..."
 npm run build
 
+# Make sure utility scripts get compiled
+echo "Compiling utility scripts..."
+npx tsc -p tsconfig.scripts.json
+
 # Explicitly ensure migrations are copied to dist
 echo "Copying migration files to dist directory..."
 mkdir -p ./dist/drizzle
